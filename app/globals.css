@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --th-bg: #ffffff;
+  --th-glass: rgba(255, 255, 255, 0.95);
+  --th-overlay: rgba(0, 0, 0, 0.15);
+  --th-heading: #111827;
+  --th-body: #1f2937;
+  --th-sub: #4b5563;
+  --th-prose: #6b7280;
+  --th-muted: #9ca3af;
+  --th-accent: #7c3aed;
+  --th-tag: #ede9fe;
+  --th-dot: #8b5cf6;
+  --th-line: #e5e7eb;
+  --th-rule: #c4b5fd;
+  --th-soft: #ddd6fe;
+  --th-sel: #ddd6fe;
+  --th-sel-tx: #4c1d95;
 }
+
+.dark {
+  --th-bg: #0f172a;
+  --th-glass: rgba(15, 23, 42, 0.95);
+  --th-overlay: rgba(0, 0, 0, 0.5);
+  --th-heading: #f1f5f9;
+  --th-body: #e2e8f0;
+  --th-sub: #cbd5e1;
+  --th-prose: #94a3b8;
+  --th-muted: #64748b;
+  --th-accent: #a78bfa;
+  --th-tag: rgba(139, 92, 246, 0.15);
+  --th-dot: #a78bfa;
+  --th-line: #1e293b;
+  --th-rule: rgba(139, 92, 246, 0.3);
+  --th-soft: rgba(139, 92, 246, 0.2);
+  --th-sel: #5b21b6;
+  --th-sel-tx: #ede9fe;
+}
+
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-th-bg: var(--th-bg);
+  --color-th-glass: var(--th-glass);
+  --color-th-overlay: var(--th-overlay);
+  --color-th-heading: var(--th-heading);
+  --color-th-body: var(--th-body);
+  --color-th-sub: var(--th-sub);
+  --color-th-prose: var(--th-prose);
+  --color-th-muted: var(--th-muted);
+  --color-th-accent: var(--th-accent);
+  --color-th-tag: var(--th-tag);
+  --color-th-dot: var(--th-dot);
+  --color-th-line: var(--th-line);
+  --color-th-rule: var(--th-rule);
+  --color-th-soft: var(--th-soft);
+  --color-th-sel: var(--th-sel);
+  --color-th-sel-tx: var(--th-sel-tx);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--th-bg);
+  color: var(--th-body);
   font-family: Arial, Helvetica, sans-serif;
 }
