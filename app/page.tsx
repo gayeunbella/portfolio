@@ -372,14 +372,14 @@ export default function Portfolio() {
                 {openExtracurriculars.university && (
                   <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Program</header>
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Sep 2025 —<br/>Present</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-white">BETS</h3>
+                        <h3 className="font-medium leading-snug text-white">UW AKCSE</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
                             <div className="absolute -left-1 top-1 h-2 w-2 rounded-full bg-blue-400"></div>
-                            <p className="text-sm font-medium text-white">Participant</p>
-                            <p className="mt-1 text-sm leading-normal text-blue-300/80">Bridging Entrepreneurs to Students participant.</p>
+                            <p className="text-sm font-medium text-white">Events Coordinator</p>
+                            <p className="mt-1 text-sm leading-normal text-blue-300/80">Plan and execute all AKCSE events, coordinating logistics, venues, and outreach for the University of Waterloo chapter.</p>
                           </div>
                         </div>
                       </div>
