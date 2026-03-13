@@ -44,6 +44,8 @@ export default function Portfolio() {
   ];
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const [activeSubSection, setActiveSubSection] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileExpandedNav, setMobileExpandedNav] = useState<string | null>(null);
 
   useEffect(() => {
     const subIds = ['ec-university', 'ec-highschool', 'proj-2026', 'proj-2025', 'proj-2024', 'proj-2023', 'proj-2022'];
@@ -65,6 +67,10 @@ export default function Portfolio() {
   }, [openExtracurriculars, openProjectYears]);
 
   const scrollTo = (id: string) => {
+    // Close mobile menu
+    setMobileMenuOpen(false);
+    setMobileExpandedNav(null);
+
     // Open the corresponding dropdown if navigating to a sub-group
     if (id.startsWith('ec-')) {
       const key = id.replace('ec-', '');
@@ -98,12 +104,91 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="bg-blue-950 text-blue-100 min-h-screen font-sans selection:bg-blue-200 selection:text-blue-900">
-      <div className="mx-auto min-h-screen max-w-7xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+    <div className={`bg-blue-950 text-blue-100 min-h-screen font-sans selection:bg-blue-200 selection:text-blue-900 ${mobileMenuOpen ? 'overflow-hidden max-h-screen' : ''}`}>
+
+      {/* Mobile Top Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-blue-950/95 backdrop-blur-sm border-b border-white/10 px-4 py-3 lg:hidden">
+        <button onClick={() => { scrollTo('about'); }} className="text-lg font-bold text-white tracking-tight">Bella Kim</button>
+        <div className="flex items-center gap-3">
+          <a href="mailto:b37kim@uwaterloo.ca" className="text-blue-400 hover:text-white transition">
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/gayeunbella/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-white transition">
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/gayeunbella/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-white transition">
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="ml-1 text-blue-400 hover:text-white transition"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+            ) : (
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden" onClick={() => setMobileMenuOpen(false)}>
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute top-[53px] left-0 right-0 bg-blue-950/95 backdrop-blur-sm border-b border-white/10" onClick={(e) => e.stopPropagation()}>
+            <nav className="px-4 py-3">
+              <ul className="space-y-1">
+                {navItems.map((item) => (
+                  <li key={item.id}>
+                    <div className="flex items-center">
+                      <button
+                        className={`flex-1 text-left py-2 text-sm font-bold uppercase tracking-widest transition-colors ${
+                          activeSection === item.id ? 'text-white' : 'text-blue-400/60'
+                        }`}
+                        onClick={() => item.children ? setMobileExpandedNav(mobileExpandedNav === item.id ? null : item.id) : scrollTo(item.id)}
+                      >
+                        {item.label}
+                      </button>
+                      {item.children && (
+                        <button
+                          onClick={() => setMobileExpandedNav(mobileExpandedNav === item.id ? null : item.id)}
+                          className="p-2 text-blue-400/60"
+                        >
+                          <svg className={`h-3 w-3 transition-transform duration-200 ${mobileExpandedNav === item.id ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                      )}
+                    </div>
+                    {item.children && mobileExpandedNav === item.id && (
+                      <ul className="ml-4 mb-1 space-y-1">
+                        {item.children.map((child) => (
+                          <li key={child.id}>
+                            <button
+                              className={`w-full text-left py-1.5 text-xs font-medium uppercase tracking-wider transition-colors ${
+                                activeSubSection === child.id ? 'text-white' : 'text-blue-400/60'
+                              }`}
+                              onClick={() => scrollTo(child.id)}
+                            >
+                              {child.label}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      )}
+
+      <div className="mx-auto min-h-screen max-w-7xl px-4 pt-16 pb-12 font-sans sm:px-6 md:px-12 md:py-20 lg:px-24 lg:py-0 lg:pt-0">
         <div className="lg:flex lg:justify-between lg:gap-0">
 
-          {/* Left Sidebar (Sticky) */}
-          <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 lg:pr-12">
+          {/* Left Sidebar (Sticky) — hidden on mobile */}
+          <header className="hidden lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 lg:pr-12">
             <div>
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
                 Bella Kim
@@ -191,7 +276,13 @@ export default function Portfolio() {
           <div className="hidden lg:block w-px bg-white/20 self-stretch" />
 
           {/* Right Content (Scrollable) */}
-          <main className="pt-24 lg:w-1/2 lg:py-24 lg:pl-12 space-y-24">
+          <main className="pt-2 lg:w-1/2 lg:py-24 lg:pl-12 space-y-10 sm:space-y-16 lg:space-y-24">
+
+            {/* Mobile Hero */}
+            <div className="lg:hidden">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">Bella Kim</h1>
+              <h2 className="mt-1 text-sm sm:text-base font-medium tracking-tight text-blue-300">Computer Engineering @ University of Waterloo</h2>
+            </div>
 
             <section id="about" className="scroll-mt-16 lg:scroll-mt-24 text-blue-300/80 leading-relaxed">
               <h3 className="text-lg font-bold uppercase tracking-widest text-white mb-6">About</h3>
@@ -225,12 +316,12 @@ export default function Portfolio() {
 
             <hr className="border-white/20" />
 
-            <section id="experience" className="scroll-mt-16 lg:scroll-mt-24 space-y-12">
+            <section id="experience" className="scroll-mt-16 lg:scroll-mt-24 space-y-8 sm:space-y-12">
               <h3 className="text-lg font-bold uppercase tracking-widest text-white">Work Experience</h3>
 
-              <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Winter 2026<br/>Jan - Apr</header>
-                <div className="z-10 sm:col-span-6">
+              <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Winter 2026<br/>Jan - Apr</header>
+                <div className="z-10 md:col-span-6">
                   <h3 className="font-medium leading-snug text-white">Graze.AI</h3>
                   <div className="mt-3 space-y-3">
                     <div className="relative pl-4 border-l border-blue-400/30">
@@ -248,9 +339,9 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Summer 2025<br/>Jul — Aug</header>
-                <div className="z-10 sm:col-span-6">
+              <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Summer 2025<br/>Jul — Aug</header>
+                <div className="z-10 md:col-span-6">
                   <h3 className="font-medium leading-snug text-white">LIKE School</h3>
                   <div className="mt-3 space-y-3">
                     <div className="relative pl-4 border-l border-blue-400/30">
@@ -269,7 +360,7 @@ export default function Portfolio() {
 
             <hr className="border-white/20" />
 
-            <section id="extracurriculars" className="scroll-mt-16 lg:scroll-mt-24 space-y-8">
+            <section id="extracurriculars" className="scroll-mt-16 lg:scroll-mt-24 space-y-6 sm:space-y-8">
               <h3 className="text-lg font-bold uppercase tracking-widest text-white">Extracurriculars</h3>
 
               {/* University */}
@@ -279,10 +370,10 @@ export default function Portfolio() {
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition-colors">University</h4>
                 </button>
                 {openExtracurriculars.university && (
-                  <div className="mt-6 space-y-12 ml-6">
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Program</header>
-                      <div className="z-10 sm:col-span-6">
+                  <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Program</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">BETS</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -304,10 +395,10 @@ export default function Portfolio() {
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition-colors">High School</h4>
                 </button>
                 {openExtracurriculars.highschool && (
-                  <div className="mt-6 space-y-12 ml-6">
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Aug 2024 —<br/>Jun 2025</header>
-                      <div className="z-10 sm:col-span-6">
+                  <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Aug 2024 —<br/>Jun 2025</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">JAMHacks 9</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -323,9 +414,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Jun 2022 —<br/>Jun 2025</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Jun 2022 —<br/>Jun 2025</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">Highlander Engineering</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -353,9 +444,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Sep 2023 —<br/>Present</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Sep 2023 —<br/>Present</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">SVP Teens · Social Venture Partners Waterloo Region</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -379,9 +470,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Jun 2022 —<br/>Present</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Jun 2022 —<br/>Present</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">Key Club International</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -398,9 +489,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Jan — Nov 2023</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Jan — Nov 2023</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">RythmHacks</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -412,9 +503,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">May 2023</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">May 2023</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">TurtleHacks</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -426,9 +517,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Sep 2022</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Sep 2022</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white">Hack the North</h3>
                         <div className="mt-3 space-y-3">
                           <div className="relative pl-4 border-l border-blue-400/30">
@@ -446,7 +537,7 @@ export default function Portfolio() {
 
             <hr className="border-white/20" />
 
-            <section id="projects" className="scroll-mt-16 lg:scroll-mt-24 space-y-8">
+            <section id="projects" className="scroll-mt-16 lg:scroll-mt-24 space-y-6 sm:space-y-8">
               <h3 className="text-lg font-bold uppercase tracking-widest text-white">Projects</h3>
 
               {/* 2026 */}
@@ -456,10 +547,10 @@ export default function Portfolio() {
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition-colors">2026</h4>
                 </button>
                 {openProjectYears['2026'] && (
-                  <div className="mt-6 space-y-12 ml-6">
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Mar 2026</header>
-                      <div className="z-10 sm:col-span-6">
+                  <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Mar 2026</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">UW Eng Network</h3>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A social media for Engineering students and professors at the University of Waterloo to share projects and connect.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -495,10 +586,10 @@ export default function Portfolio() {
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition-colors">2025</h4>
                 </button>
                 {openProjectYears['2025'] && (
-                  <div className="mt-6 space-y-12 ml-6">
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Feb 2025 —<br/>Jun 2025</header>
-                      <div className="z-10 sm:col-span-6">
+                  <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Feb 2025 —<br/>Jun 2025</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Autonomous Firefighter Bot</h3>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">Autonomous robot that detects and extinguishes fires in a maze environment. Secured fastest completion time (9.8s) among 50 competing robots. Created 3 custom PCB boards using TraxMaker, improving signal reliability by 40%.</p>
                         <ul className="mt-2 flex flex-wrap text-xs font-medium text-blue-300">
@@ -507,6 +598,26 @@ export default function Portfolio() {
                           <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-blue-900/50 px-3 py-1 leading-5">AutoCAD</div></li>
                           <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-blue-900/50 px-3 py-1 leading-5">Onshape</div></li>
                           <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-blue-900/50 px-3 py-1 leading-5">Embedded Systems</div></li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Mar 2025</header>
+                      <div className="z-10 md:col-span-6">
+                        <h3 className="font-medium leading-snug text-white hover:text-blue-300">Portfolio</h3>
+                        <p className="mt-2 text-sm leading-normal text-blue-300/80">Personal portfolio website showcasing projects, experience, and skills. Built with Next.js, React, and Tailwind CSS with a responsive design.</p>
+                        <div className="mt-3 flex items-center gap-3">
+                          <a href="https://github.com/gayeunbella/portfolio" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-blue-400 hover:text-white transition flex items-center gap-1">
+                            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                          </a>
+                        </div>
+                        <ul className="mt-2 flex flex-wrap text-xs font-medium text-blue-300">
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-blue-900/50 px-3 py-1 leading-5">Next.js</div></li>
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-blue-900/50 px-3 py-1 leading-5">React</div></li>
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-blue-900/50 px-3 py-1 leading-5">TypeScript</div></li>
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-blue-900/50 px-3 py-1 leading-5">Tailwind CSS</div></li>
                         </ul>
                       </div>
                     </div>
@@ -521,10 +632,10 @@ export default function Portfolio() {
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition-colors">2024</h4>
                 </button>
                 {openProjectYears['2024'] && (
-                  <div className="mt-6 space-y-12 ml-6">
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">May 2024</header>
-                      <div className="z-10 sm:col-span-6">
+                  <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">May 2024</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">CashQuiz</h3>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A gamified study platform that quizzes users and rewards correct answers with points redeemable for gift cards. Built at DaveHacks 2024.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -546,9 +657,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Oct 2023 —<br/>May 2024</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Oct 2023 —<br/>May 2024</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Fluent Friends</h3>
                         <p className="mt-1 text-sm text-white">🏆 Best User Design at Technovation Girls</p>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">Mobile app connecting ESL learners with native speakers. Won Best User Design at Waterloo Live Regional Pitch Event.</p>
@@ -559,9 +670,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Oct 2023 —<br/>Apr 2024</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Oct 2023 —<br/>Apr 2024</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Plat AI</h3>
                         <p className="mt-1 text-sm text-white">🏆 2nd Place at Flowboat Pitching Competition</p>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A real-time pitch assistant providing automated feedback on business pitches with 95% accuracy. Built a Q&A system that analyzes pitch topics to generate relevant interview questions.</p>
@@ -589,10 +700,10 @@ export default function Portfolio() {
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition-colors">2023</h4>
                 </button>
                 {openProjectYears['2023'] && (
-                  <div className="mt-6 space-y-12 ml-6">
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Sep 2023</header>
-                      <div className="z-10 sm:col-span-6">
+                  <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Sep 2023</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Budget Buddy</h3>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A budget planner that tracks income and expenses while helping users set financial objectives. Built at Hack the North 2023.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -613,9 +724,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Jun 2023</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Jun 2023</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">FashionForecast</h3>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A website that recommends daily outfits based on weather conditions, featuring a personal closet manager and calendar. Built at JAMHacks 7.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -638,9 +749,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Jan 2023</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Jan 2023</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Bubble Cat</h3>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A math learning game with feline-themed graphics that quizzes players across five topics including trigonometry and quadratics. Built at Treasure Hacks 3.0.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -670,10 +781,10 @@ export default function Portfolio() {
                   <h4 className="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition-colors">2022</h4>
                 </button>
                 {openProjectYears['2022'] && (
-                  <div className="mt-6 space-y-12 ml-6">
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Nov 2022</header>
-                      <div className="z-10 sm:col-span-6">
+                  <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Nov 2022</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">CharityChimp</h3>
                         <p className="mt-1 text-sm text-white">🏆 Winner of Best Use of DeSo at Give Back Hacks 3</p>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A full-stack web app powered by the DeSo blockchain that helps users find verified charities to donate to.</p>
@@ -697,9 +808,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Nov 2022</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Nov 2022</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Studefficient</h3>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A web-based study tool with a to-do list, calendar, timer, and Pomodoro support to help students stay organized. Built at ClockHacks.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -720,9 +831,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Jun 2022</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Jun 2022</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">FoodiEco</h3>
                         <p className="mt-1 text-sm text-white">🏆 Winner of Best Software Project at Highlander Engineering Challenge</p>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">An app with a fridge tracker, recipe organizer, and eco-friendly ingredient replacement suggestions.</p>
@@ -743,9 +854,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">May 2022</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">May 2022</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Thrift</h3>
                         <p className="mt-1 text-sm text-white">🏆 Winner of Best Sustainability Hack at JAMHacks 6</p>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">A Chrome extension delivering real-time sustainability insights to guide eco-conscious purchases. Accelerated product data scraping by 60% using Flask and boosted relevant product match rate by 35%.</p>
@@ -769,9 +880,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 sm:col-span-2">Oct 2022 —<br/>Nov 2022</header>
-                      <div className="z-10 sm:col-span-6">
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-blue-400 md:col-span-2">Oct 2022 —<br/>Nov 2022</header>
+                      <div className="z-10 md:col-span-6">
                         <h3 className="font-medium leading-snug text-white hover:text-blue-300">Light Your Way</h3>
                         <p className="mt-1 text-sm text-white">🏆 Overall Project, Strong Pitch & Organization at Community Changemaker</p>
                         <p className="mt-2 text-sm leading-normal text-blue-300/80">An event platform connecting students with community resources.</p>
