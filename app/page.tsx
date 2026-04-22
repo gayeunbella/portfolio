@@ -176,9 +176,9 @@ export default function Portfolio() {
       <div
         ref={cursorRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 -z-10 hidden h-[36rem] w-[36rem] rounded-full opacity-70 lg:block dark:opacity-60"
+        className="pointer-events-none fixed left-0 top-0 -z-10 hidden h-[40rem] w-[40rem] rounded-full opacity-40 blur-2xl lg:block dark:opacity-30"
         style={{
-          background: 'radial-gradient(circle, var(--th-dot) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, var(--th-dot) 0%, transparent 70%)',
           willChange: 'transform',
           transform: 'translate3d(50vw, 50vh, 0) translate(-50%, -50%)',
         }}
