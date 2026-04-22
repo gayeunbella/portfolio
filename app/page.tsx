@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('about');
@@ -98,6 +98,21 @@ export default function Portfolio() {
     applyAccent(color, theme);
   };
 
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = cursorRef.current;
+    if (!el) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const onMove = (e: MouseEvent) => {
+      el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+    };
+
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
+
   useEffect(() => {
     const subIds = ['ec-university', 'ec-highschool', 'proj-2026', 'proj-2025', 'proj-2024', 'proj-2023', 'proj-2022'];
     const observer = new IntersectionObserver(
@@ -155,7 +170,19 @@ export default function Portfolio() {
   };
 
   return (
-    <div className={`bg-th-bg text-th-body min-h-screen font-sans selection:bg-th-sel selection:text-th-sel-tx ${mobileMenuOpen ? 'overflow-hidden max-h-screen' : ''}`}>
+    <div className={`text-th-body min-h-screen font-sans selection:bg-th-sel selection:text-th-sel-tx ${mobileMenuOpen ? 'overflow-hidden max-h-screen' : ''}`}>
+
+      {/* Cursor-following glow — sits behind everything; elements with their own background cover it */}
+      <div
+        ref={cursorRef}
+        aria-hidden="true"
+        className="pointer-events-none fixed left-0 top-0 -z-10 hidden h-[36rem] w-[36rem] rounded-full opacity-70 lg:block dark:opacity-60"
+        style={{
+          background: 'radial-gradient(circle, var(--th-dot) 0%, transparent 65%)',
+          willChange: 'transform',
+          transform: 'translate3d(50vw, 50vh, 0) translate(-50%, -50%)',
+        }}
+      />
 
       {/* Mobile Top Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-th-glass backdrop-blur-sm border-b border-th-line px-4 py-3 lg:hidden">
