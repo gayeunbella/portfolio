@@ -390,13 +390,13 @@ export default function Portfolio() {
             <section id="about" className="scroll-mt-16 lg:scroll-mt-24 text-th-prose leading-relaxed">
               <h3 className="text-lg font-bold uppercase tracking-widest text-th-heading mb-6">About</h3>
               <p className="mb-6">
-                First-year Computer Engineering student at the University of Waterloo (President&#39;s Scholarship of Distinction). I build across the stack — from custom PCBs to full-stack web apps. Currently a Software Engineering Co-op at Graze.AI. I speak English, Korean, and Japanese.
+                Hi! I design and ship end-to-end systems spanning embedded hardware, PCB design, and full-stack web.
               </p>
               <div className="space-y-4">
                 {[
-                  { category: "Languages", skills: ["Python", "C++", "JavaScript", "TypeScript", "Verilog", "HTML", "CSS"] },
-                  { category: "Web & Frameworks", skills: ["React", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "GraphQL"] },
-                  { category: "Tools & Platforms", skills: ["Git", "Vercel", "n8n", "Google AppScript", "Google Cloud API", "BeautifulSoup", "SQLite", "JWT", "Figma"] },
+                  { category: "Languages", skills: ["Python", "C++", "JavaScript", "TypeScript", "SQL", "Verilog", "HTML", "CSS"] },
+                  { category: "Web & Frameworks", skills: ["React", "React Native", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "GraphQL"] },
+                  { category: "Tools & Platforms", skills: ["Git", "Vercel", "n8n", "Google AppScript", "Google Cloud API", "BeautifulSoup", "httpx", "asyncio", "aiosqlite", "Pydantic", "SQLite", "JWT", "Figma"] },
                   { category: "Hardware & Embedded", skills: ["PCB Design", "TraxMaker", "AutoCAD", "Onshape", "FreeRTOS", "Arduino", "Embedded Systems"] },
                 ].map((group) => (
                   <div key={group.category}>
@@ -424,14 +424,21 @@ export default function Portfolio() {
                     <div className="relative pl-4 border-l border-th-rule">
                       <div className="absolute -left-1 top-1 h-2 w-2 rounded-full bg-th-dot"></div>
                       <p className="text-sm font-medium text-th-heading">Software Engineering Co-op</p>
-                      <p className="mt-1 text-sm leading-normal text-th-prose">Developing software solutions and working alongside the engineering team.</p>
+                      <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
+                        <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Architected an async FastAPI backend integrating LLM and web-scraping APIs, orchestrating 30+ concurrent HTTP requests via <code className="text-[0.8rem] font-mono text-th-heading">asyncio.Semaphore</code> under strict token rate limits.</span></li>
+                        <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Engineered a deterministic entity resolution algorithm with fuzzy stem matching, Levenshtein distances, and heuristic scoring to map unstructured search data to canonical domains.</span></li>
+                        <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Built an LLM-driven classification pipeline parsing natural language criteria into strict Pydantic schemas with deterministic fallbacks for zero-hallucination mapping.</span></li>
+                        <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Implemented a high-throughput <code className="text-[0.8rem] font-mono text-th-heading">aiosqlite</code> caching layer with SHA-256 fingerprinting to deduplicate pipeline ops across large CSV datasets.</span></li>
+                      </ul>
                     </div>
                   </div>
                   <ul className="mt-3 flex flex-wrap text-xs font-medium text-th-sub">
                     <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">Python</div></li>
-                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">JavaScript</div></li>
-                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">Google AppScript</div></li>
-                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">N8N</div></li>
+                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">FastAPI</div></li>
+                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">LLMs</div></li>
+                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">asyncio</div></li>
+                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">aiosqlite</div></li>
+                    <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">Pydantic</div></li>
                   </ul>
                 </div>
               </div>
@@ -444,7 +451,10 @@ export default function Portfolio() {
                     <div className="relative pl-4 border-l border-th-rule">
                       <div className="absolute -left-1 top-1 h-2 w-2 rounded-full bg-th-dot"></div>
                       <p className="text-sm font-medium text-th-heading">Teacher Assistant</p>
-                      <p className="mt-1 text-sm leading-normal text-th-prose">Tutored 200+ students in English speaking and writing. Assisted staff with IT operations and created 20+ booklets with leveled study questions.</p>
+                      <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
+                        <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Tutored 200+ students in English speaking and writing.</span></li>
+                        <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Assisted staff with IT operations and created 20+ booklets with leveled study questions.</span></li>
+                      </ul>
                     </div>
                   </div>
                   <ul className="mt-3 flex flex-wrap text-xs font-medium text-th-sub">
@@ -651,9 +661,25 @@ export default function Portfolio() {
                   <div className={`overflow-hidden transition-opacity duration-500 ease-out-expo ${openProjectYears['2026'] ? 'opacity-100' : 'opacity-0'}`}>
                   <div className="mt-4 space-y-8 ml-3 sm:mt-6 sm:space-y-12 sm:ml-6">
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
+                      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Apr 2026 —<span className="hidden md:block"></span> Present</header>
+                      <div className="z-10 md:col-span-6">
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Hase Data Pipeline</h3>
+                        <p className="mt-2 text-sm leading-normal text-th-prose">A financial tracking client for aggregating and visualizing daily spend streams on mobile.</p>
+                        <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Architecting a highly concurrent client that aggregates and logs daily income/expense streams with real-time dynamic visualization.</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Engineered a centralized relational schema to securely parse, store, and retrieve digital wallet identifiers and loyalty point metrics across mobile ecosystems.</span></li>
+                        </ul>
+                        <ul className="mt-2 flex flex-wrap text-xs font-medium text-th-sub">
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">TypeScript</div></li>
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">React Native</div></li>
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">SQL</div></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Mar 2026</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Dia Edu Consulting</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Dia Edu Consulting</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A bilingual (Korean/English) website for a Canadian study abroad consulting service.</p>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://gem-edu-consulting.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
@@ -671,8 +697,12 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Mar 2026</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">UW Eng Network</h3>
-                        <p className="mt-2 text-sm leading-normal text-th-prose">A social media for Engineering students and professors at the University of Waterloo to share projects and connect.</p>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">UW Eng Network</h3>
+                        <p className="mt-2 text-sm leading-normal text-th-prose">A social platform for UW Engineering students and professors to share projects and connect.</p>
+                        <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Built a low-latency full-stack architecture with strict JWT auth and automated visual verification via Claude&apos;s vision API.</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Engineered an async web-scraping ETL pipeline (<code className="text-[0.8rem] font-mono text-th-heading">httpx</code>, BeautifulSoup) loading 300+ nodes of unstructured faculty data into a scalable SQLite database.</span></li>
+                        </ul>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://uwengnetwork-jet.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
                             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -716,8 +746,13 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Feb 2025 —<span className="hidden md:block"></span> Jun 2025</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Autonomous Firefighter Bot</h3>
-                        <p className="mt-2 text-sm leading-normal text-th-prose">Autonomous robot that detects and extinguishes fires in a maze environment. Secured fastest completion time (9.8s) among 50 competing robots. Created 3 custom PCB boards using TraxMaker, improving signal reliability by 40%.</p>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Autonomous Firefighter Bot</h3>
+                        <p className="mt-2 text-sm leading-normal text-th-prose">Autonomous robot that detects and extinguishes fires in a physical maze environment.</p>
+                        <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Engineered a real-time C++ system to process sensor telemetry, detect anomalies, and execute deterministic pathfinding through a complex maze.</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Achieved the fastest algorithm and physical completion time (9.8s) among 50 competing robots.</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Designed and assembled 3 custom PCBs in TraxMaker, improving hardware-to-software signal reliability by 40%.</span></li>
+                        </ul>
                         <ul className="mt-2 flex flex-wrap text-xs font-medium text-th-sub">
                           <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">PCB Design</div></li>
                           <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">TraxMaker</div></li>
@@ -731,8 +766,8 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Mar 2025</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Portfolio</h3>
-                        <p className="mt-2 text-sm leading-normal text-th-prose">Personal portfolio website showcasing projects, experience, and skills. Built with Next.js, React, and Tailwind CSS with a responsive design.</p>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Portfolio</h3>
+                        <p className="mt-2 text-sm leading-normal text-th-prose">This website.</p>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/gayeunbella/portfolio" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
                             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -764,7 +799,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">May 2024</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">CashQuiz</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">CashQuiz</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A gamified study platform that quizzes users and rewards correct answers with points redeemable for gift cards. Built at DaveHacks 2024.</p>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/gayeunbella/cashquiz" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
@@ -788,7 +823,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Oct 2023 —<span className="hidden md:block"></span> May 2024</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Fluent Friends</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Fluent Friends</h3>
                         <p className="mt-1 text-sm text-th-heading">🏆 Best User Design at Technovation Girls</p>
                         <p className="mt-2 text-sm leading-normal text-th-prose">Mobile app connecting ESL learners with native speakers. Won Best User Design at Waterloo Live Regional Pitch Event.</p>
                         <ul className="mt-2 flex flex-wrap text-xs font-medium text-th-sub">
@@ -801,9 +836,13 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Oct 2023 —<span className="hidden md:block"></span> Apr 2024</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Plat AI</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Plat AI</h3>
                         <p className="mt-1 text-sm text-th-heading">🏆 2nd Place at Flowboat Pitching Competition</p>
-                        <p className="mt-2 text-sm leading-normal text-th-prose">A real-time pitch assistant providing automated feedback on business pitches with 95% accuracy. Built a Q&A system that analyzes pitch topics to generate relevant interview questions.</p>
+                        <p className="mt-2 text-sm leading-normal text-th-prose">A real-time pitch assistant providing automated feedback on business pitches.</p>
+                        <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Built a pitch feedback engine reaching 95% accuracy on structured rubric scoring.</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Designed a Q&amp;A system that analyzes pitch topics to generate relevant interview questions on the fly.</span></li>
+                        </ul>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/jeffrey-zang/plat" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
                             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -834,7 +873,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Sep 2023</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Budget Buddy</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Budget Buddy</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A budget planner that tracks income and expenses while helping users set financial objectives. Built at Hack the North 2023.</p>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/hannaxia/Budget-Buddy" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
@@ -857,7 +896,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Jun 2023</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">FashionForecast</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">FashionForecast</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A website that recommends daily outfits based on weather conditions, featuring a personal closet manager and calendar. Built at JAMHacks 7.</p>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/gayeunbella/Fashion-Forecast" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
@@ -882,7 +921,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Jan 2023</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Bubble Cat</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Bubble Cat</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A math learning game with feline-themed graphics that quizzes players across five topics including trigonometry and quadratics. Built at Treasure Hacks 3.0.</p>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/gayeunbella/Bubble-Cat" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
@@ -917,7 +956,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Nov 2022</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">CharityChimp</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">CharityChimp</h3>
                         <p className="mt-1 text-sm text-th-heading">🏆 Winner of Best Use of DeSo at Give Back Hacks 3</p>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A full-stack web app powered by the DeSo blockchain that helps users find verified charities to donate to.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -943,7 +982,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Nov 2022</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Studefficient</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Studefficient</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A web-based study tool with a to-do list, calendar, timer, and Pomodoro support to help students stay organized. Built at ClockHacks.</p>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/gayeunbella/Studefficient" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
@@ -966,7 +1005,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Jun 2022</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">FoodiEco</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">FoodiEco</h3>
                         <p className="mt-1 text-sm text-th-heading">🏆 Winner of Best Software Project at Highlander Engineering Challenge</p>
                         <p className="mt-2 text-sm leading-normal text-th-prose">An app with a fridge tracker, recipe organizer, and eco-friendly ingredient replacement suggestions.</p>
                         <div className="mt-3 flex items-center gap-3">
@@ -989,9 +1028,13 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">May 2022</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Thrift</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Thrift</h3>
                         <p className="mt-1 text-sm text-th-heading">🏆 Winner of Best Sustainability Hack at JAMHacks 6</p>
-                        <p className="mt-2 text-sm leading-normal text-th-prose">A Chrome extension delivering real-time sustainability insights to guide eco-conscious purchases. Accelerated product data scraping by 60% using Flask and boosted relevant product match rate by 35%.</p>
+                        <p className="mt-2 text-sm leading-normal text-th-prose">A Chrome extension delivering real-time sustainability insights to guide eco-conscious purchases.</p>
+                        <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Accelerated product data scraping by 60% via a Flask backend.</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Boosted relevant product match rate by 35% with improved heuristics.</span></li>
+                        </ul>
                         <div className="mt-3 flex items-center gap-3">
                           <a href="https://github.com/bakuyy/thrift" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-th-accent hover:text-th-heading transition flex items-center gap-1">
                             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1015,7 +1058,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Oct 2022 —<span className="hidden md:block"></span> Nov 2022</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading hover:text-th-accent">Light Your Way</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Light Your Way</h3>
                         <p className="mt-1 text-sm text-th-heading">🏆 Overall Project, Strong Pitch & Organization at Community Changemaker</p>
                         <p className="mt-2 text-sm leading-normal text-th-prose">An event platform connecting students with community resources.</p>
                         <ul className="mt-2 flex flex-wrap text-xs font-medium text-th-sub">
