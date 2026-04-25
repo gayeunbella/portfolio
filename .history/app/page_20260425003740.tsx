@@ -706,7 +706,7 @@ export default function Portfolio() {
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Apr 2026 —<span className="hidden md:block"></span> Present</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Hase</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Hase Data Pipeline</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A financial tracking client for aggregating and visualizing daily spend streams on mobile.</p>
                         <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
                           <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Architecting a highly concurrent client that aggregates and logs daily income/expense streams with real-time dynamic visualization.</span></li>

@@ -693,20 +693,20 @@ export default function Portfolio() {
                         <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Booke</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A mobile and web app for readers.</p>
                         <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
-                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Built a backend database where books and user data gets stored.</span></li>
-                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Provided an easy UI/UX design for easy navigations, allowing for new users to easily contribute to the app without struggles.</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Set up backend</span></li>
+                          <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Engineered a centralized relational schema to securely parse, store, and retrieve digital wallet identifiers and loyalty point metrics across mobile ecosystems.</span></li>
                         </ul>
                         <ul className="mt-2 flex flex-wrap text-xs font-medium text-th-sub">
+                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">TypeScript</div></li>
                           <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">React Native</div></li>
                           <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">SQL</div></li>
-                          <li className="mr-1.5 mt-2"><div className="flex items-center rounded-full bg-th-tag px-3 py-1 leading-5">Google Cloud API</div></li>
                         </ul>
                       </div>
                     </div>
                     <div className="group relative grid pb-1 transition-all md:grid-cols-8 md:gap-4">
                       <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-th-accent md:col-span-2">Apr 2026 —<span className="hidden md:block"></span> Present</header>
                       <div className="z-10 md:col-span-6">
-                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Hase</h3>
+                        <h3 className="font-medium leading-snug text-th-heading group-hover:text-th-accent transition-colors">Hase Data Pipeline</h3>
                         <p className="mt-2 text-sm leading-normal text-th-prose">A financial tracking client for aggregating and visualizing daily spend streams on mobile.</p>
                         <ul className="mt-2 space-y-1.5 text-sm leading-normal text-th-prose">
                           <li className="flex gap-2.5"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-th-accent"></span><span>Architecting a highly concurrent client that aggregates and logs daily income/expense streams with real-time dynamic visualization.</span></li>
